@@ -1,0 +1,16 @@
+{
+  "name": "message-science",
+  "owner": {
+    "name": "Message Science"
+  },
+  "metadata": {
+    "description": "Message Science hosted MCP plugin for billing, domain and mailbox questions and approved orders."
+  },
+  "plugins": [
+    {
+      "name": "message-science",
+      "source": "./plugins/message-science",
+      "description": "Ask about Message Science billing, domains and mailboxes, and prepare orders and changes for your approval."
+    }
+  ]
+}

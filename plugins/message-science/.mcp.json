@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "messagescience": {
+      "type": "http",
+      "url": "https://api.messagescience.com/mcp"
+    }
+  }
+}

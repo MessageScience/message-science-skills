@@ -1,0 +1,20 @@
+{
+  "name": "message-science",
+  "version": "0.1.0",
+  "description": "Ask about Message Science billing, domains and mailboxes, and prepare orders and changes for your approval.",
+  "author": {
+    "name": "Message Science",
+    "url": "https://messagescience.com"
+  },
+  "homepage": "https://messagescience.com",
+  "repository": "https://github.com/messagescience/message-science-skills",
+  "license": "MIT",
+  "keywords": [
+    "billing",
+    "domains",
+    "mailboxes",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

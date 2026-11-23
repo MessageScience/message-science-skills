@@ -1,0 +1,15 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "name": "message-science",
+  "skills": [
+    "message-science"
+  ],
+  "groupings": [
+    {
+      "title": "Billing, domains and mailboxes",
+      "skills": [
+        "message-science"
+      ]
+    }
+  ]
+}

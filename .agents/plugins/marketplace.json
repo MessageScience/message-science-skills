@@ -1,0 +1,20 @@
+{
+  "name": "message-science",
+  "interface": {
+    "displayName": "Message Science Plugins"
+  },
+  "plugins": [
+    {
+      "name": "message-science",
+      "source": {
+        "source": "local",
+        "path": "./plugins/message-science"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
