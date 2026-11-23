@@ -2,7 +2,7 @@
 name: message-science
 description: Answer Message Science billing, domain and mailbox questions and prepare orders, permanent mailbox deletions and domain renewal changes for human approval. Use for quotes, expiring domains and mailbox or order status.
 metadata:
-  version: "0.1.0"
+  version: "0.1.2"
 ---
 
 # Message Science
@@ -33,18 +33,18 @@ summaries and quotes.
 ### First use: approve the connection
 
 The first request from a new AI app returns an approval link. The person opens
-it and signs in with the same account they connected. Read access is included.
-Ordering and mailbox removal and renewal changes are checked by default. The
-person chooses what to allow, approves the app, then asks you to try again.
+it, signs in with the same account, chooses what the app may do, approves it,
+then asks you to try again. Their role and workspace switches still apply.
+They can change or revoke the approval in **Settings > Connect an AI agent**.
+Revocation takes effect on the next request.
 
-Approval covers every workspace the person can use. Their role and the workspace
-switches still apply. They can change or revoke the approval in **Settings >
-Connect an AI agent**. Revocation takes effect on the next request.
-
-If a tool returns `connection_not_approved`, show the person the `approval_url`
-exactly as given and wait for them to say they approved it. Never open or approve
-the link yourself. If `whoami` reports a pending or revoked connection, follow
-the same steps with `connection.approval_url`.
+If a tool returns `connection_not_approved`, show its `approval_url` exactly as
+given. If `whoami` reports a pending or revoked connection, use
+`connection.approval_url`. With either link, tell the person to open it, sign in
+with the same account, choose what the app may do, approve it, then ask you to
+try again. Also say “Approving covers every workspace you are a member of. Both
+change permissions start selected; clear them to keep this app read-only.” Wait
+for the person to say they approved it. Never open or approve the link yourself.
 
 ## 2. Pick the workspace
 
@@ -63,7 +63,7 @@ account data. Never pick one yourself, never reuse a choice across customers, an
 | Can I buy these names | `check_domain_availability` |
 | Mailboxes and their status | `list_mailboxes`, `get_mailbox` |
 | Orders and removals | Use `list_orders` rows to answer order questions. Read `summary`, `target_count`, `job_status`, and `targets_preview` (up to 5 targets). Call `get_operation` only for the one order the person asks about. |
-| Password or credential questions | `get_credential_export_instructions` |
+| See, get, download or export a mailbox password or other credential | `get_credential_export_instructions` |
 | Rotation policy | `get_rotation_policy` when available, otherwise use the console |
 | Smartlead connection | `list_sequencers` and `get_sequencer_setup` when available, otherwise use the console |
 
@@ -91,16 +91,18 @@ Rules:
 
 ## Costs
 
-When a quote or preview mentions cost, repeat its `billing_notice` to the person
-word for word, before any amounts. For example, “Mailbox charges are monthly.
-Domain charges are annual. Your card may be charged today.” Repeat “This
-workspace is not billed.” when that is the notice.
+The first time the person asks to buy or add mailboxes or domains, say this
+before any question you ask them: “Mailbox charges are monthly. Domain charges
+are annual. Your card may be charged today.” Say it even if you still need
+details, and even if ordering is turned off for this connection. Say “This
+workspace is not billed.” instead only when a tool result includes that notice
+in `billing_notice` or `state_reason`.
 
-Mailbox charges are monthly. Domain charges are annual. Your card may be
-charged today. Show what the human will pay today, the new monthly total, and
-any annual domain charges before asking for approval. An Owner or Admin can
-turn off ordering or turn off mailbox removals and domain renewal changes for
-all agents in **Settings > Connect an AI agent**.
+When a result contains `billing_notice`, repeat it word for word before any
+amount. Show what the human will pay today, the new monthly total, and any
+annual domain charges before asking for approval. An Owner or Admin can turn off
+ordering or turn off mailbox removals and domain renewal changes for all agents
+in **Settings > Connect an AI agent**.
 
 If a quote says an amount is unavailable, say so and give no number. Never
 turn an unavailable amount into $0 and never add numbers yourself. Send the
@@ -108,10 +110,7 @@ person to New order in the console, which shows the list price before checkout.
 
 ## 4. Make a change
 
-When a quote or preview mentions cost, repeat its `billing_notice` to the person
-word for word, before any amounts. For example, “Mailbox charges are monthly.
-Domain charges are annual. Your card may be charged today.” Repeat “This
-workspace is not billed.” when that is the notice.
+Follow the first-reply rule in Costs before asking for order details.
 
 Every spend or delete is preview, human approval, confirm:
 
@@ -154,9 +153,12 @@ removing mailboxes from Smartlead does not delete them, unless the human asks.
 
 ## 5. Console only
 
-- When the person asks for a password, credentials or a login, call
-  `get_credential_export_instructions` and give them its steps, even when the
-  mailbox list is empty. Never ask for, guess or repeat a password.
+- When the person asks to see, get, download or export a mailbox password or
+  other credential, call `get_credential_export_instructions` (mailbox IDs are
+  optional) and give them the console steps it returns. Without IDs, it gives
+  general steps to export one mailbox at a time. Questions about rotating
+  passwords, or about how a sequencer uses them, do not need this tool.
+  Never ask for, guess or repeat a password.
 - Use the console for password changes and rotation.
 - If a human pastes a Smartlead key in chat, tell them to rotate it in Smartlead,
   enter the replacement in console Settings → Sequencers, and verify the connection
@@ -192,7 +194,7 @@ removing mailboxes from Smartlead does not delete them, unless the human asks.
 | Code | Do this |
 |---|---|
 | `unauthenticated` | Ask the human to reconnect or sign in again |
-| `connection_not_approved` | This AI app has not been approved, or its access was revoked. Show the person `approval_url`. |
+| `connection_not_approved` | This AI app has not been approved, or its access was revoked. Pass on `approval_url` with the guidance in First use. |
 | `connection_not_allowed` | The person who approved this app did not allow this kind of change. They can allow it in Settings > Connect an AI agent. |
 | `not_enabled` | An Owner or Admin turned off agent ordering (or removals and renewal changes) for this workspace. Say so, give `console_url`, and say an Owner or Admin can turn it on in Settings > Connect an AI agent. Do not suggest reconnecting or re-authorizing; that changes nothing. |
 | `permission_denied` | Their role cannot do this; suggest an Owner or Admin |

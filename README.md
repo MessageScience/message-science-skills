@@ -9,8 +9,8 @@ the status of an order. It can also **prepare** orders, permanent mailbox deleti
 changes. Nothing changes until you see the preview and say yes.
 
 The agent acts as you, with your role in each workspace. It never sees mailbox passwords, card
-details or sequencer API keys. If you ask for a password or login, it gives you the console steps to export
-credentials.
+details or sequencer API keys. If you ask for a mailbox password or login, it gives you the console steps
+to export it yourself.
 
 ## Connect
 
@@ -84,18 +84,20 @@ Start a new session after installing a plugin.
 ## First use: approve the connection
 
 The first request from a new AI app returns a link. Open it and sign in with the same Message Science
-account you connected. Read access is always included, and **Place orders** and **Remove mailboxes and change domain
-renewals** are checked by default. Choose what to allow, click **Approve**, and ask your agent to try again.
-Only approve an app you just connected yourself.
+account you connected. Read access is always included. Approving covers every workspace you are a member of.
+Both change permissions, **Place orders** and **Remove mailboxes and change domain renewals**, start selected;
+clear them to keep this app read-only. Click **Approve** and ask your agent to try again. Only approve an app you
+just connected yourself.
 
-One approval covers every workspace you can use. Your role and each workspace's switches still apply.
+Your role and each workspace's switches still apply.
 Change or revoke the approval under **Connected AI apps** in
 [Settings > Connect an AI agent](https://app.messagescience.com/settings/agents). A revoke takes effect on the next request.
 
 ## Costs
 
-Mailbox charges are monthly. Domain charges are annual. Your card may be charged today. The agent must show
-what you'll pay today, the new monthly total and any annual domain charges, and get your clear yes, before it submits.
+Mailbox charges are monthly. Domain charges are annual. Your card may be charged today. The agent says this
+the first time you ask to buy, before it asks for details. Before it submits, it must show
+what you'll pay today, the new monthly total and any annual domain charges, and get your clear yes.
 
 If a quote can't price an amount, the agent says it is unavailable and gives no number; it never shows it as $0.
 Use **New order** in the console, which shows the list price before checkout. If an order preview can't be priced,
