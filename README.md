@@ -9,7 +9,8 @@ the status of an order. It can also **prepare** orders, permanent mailbox deleti
 changes. Nothing changes until you see the preview and say yes.
 
 The agent acts as you, with your role in each workspace. It never sees mailbox passwords, card
-details or sequencer API keys.
+details or sequencer API keys. If you ask for a password or login, it gives you the console steps to export
+credentials.
 
 ## Connect
 
@@ -93,13 +94,17 @@ Change or revoke the approval under **Connected AI apps** in
 
 ## Costs
 
-Buying mailboxes or domains through an agent can charge the card on file, just as in the console. The agent
-must show what you'll pay today and the new monthly total, and get your clear yes, before it submits.
-If Message Science cannot confirm those amounts, the agent does not place the order. Place it in the console instead.
+Mailbox charges are monthly. Domain charges are annual. Your card may be charged today. The agent must show
+what you'll pay today, the new monthly total and any annual domain charges, and get your clear yes, before it submits.
+
+If a quote can't price an amount, the agent says it is unavailable and gives no number; it never shows it as $0.
+Use **New order** in the console, which shows the list price before checkout. If an order preview can't be priced,
+the agent does not place the order. Place it in the console instead.
 
 If you add mailboxes to a domain whose renewal is off, the agent asks you to choose first. **Use until expiry** keeps
 renewal off, and the mailboxes stop working when the domain expires. **Turn renewal on** shows the annual renewal
-cost for your approval as a separate step before the mailbox order. Using a domain until expiry requires a known future expiry date. If the date is unknown, offer to review turning renewal on or leave the mailbox out.
+cost for your approval as a separate step before the mailbox order. **Use until expiry** needs a known future expiry date. If the date is unknown, the agent offers to review turning renewal on
+or to leave those mailboxes out.
 
 ## Turn agent ordering off
 
